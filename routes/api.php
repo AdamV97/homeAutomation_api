@@ -18,6 +18,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::middleware('auth:api')->group(function () {
+    Route::get('allData', 'App\Http\Controllers\dataController@allData');
+    Route::get('deviceStatus', 'App\Http\Controllers\deviceController@deviceStatus');
+    Route::get('logout', 'App\Http\Controllers\userController@logout');
+});
+
+Route::get('avgDayData', 'App\Http\Controllers\dataController@avgDayData');
 Route::get('lastData', 'App\Http\Controllers\dataController@lastData');
-Route::get('allData', 'App\Http\Controllers\dataController@allData');
-Route::get('devices', 'App\Http\Controllers\deviceController@allDevices');
+
+Route::post('login', 'App\Http\Controllers\userController@login');
