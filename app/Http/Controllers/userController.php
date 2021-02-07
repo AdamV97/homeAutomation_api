@@ -15,23 +15,18 @@ class userController extends Controller
             'password' => 'required'
         ]);
 
-        if (!auth()->attempt($loginData)) {
-            return response(['message' => 'Invalid Credentials']);
+        if (!\Auth::attempt($loginData)) {
+            return response(['logedin' => false,'message' => 'Invalid Credentials']);
         }
 
-        $accessToken = auth()->user()->createToken('authToken')->accessToken;
+        $accessToken = \Auth::user()->createToken('authToken')->accessToken;
 
-        return response(['user' => auth()->user(), 'access_token' => $accessToken, 'logedin' => true]);
+        return response(['user' => \Auth::user(), 'access_token' => $accessToken, 'logedin' => true]);
     }
 
-    public function AauthAcessToken(){
-        return $this->hasMany('\App\OauthAccessToken');
-    }
-
-    public function logout()
+    public function logout(Request $request)
     { 
-        if (Auth::check()) {
-            Auth::user()->AauthAcessToken()->delete();
-        }
+        $request->user()->token()->revoke();
+        return response(['logedin' => false, 'message' => 'Succesfully Signed out!']);
     }
 }
