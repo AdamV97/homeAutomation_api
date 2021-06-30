@@ -27,4 +27,10 @@ Route::middleware('auth:api')->group(function () {
 Route::get('avgDayData', 'App\Http\Controllers\dataController@avgDayData');
 Route::get('lastData', 'App\Http\Controllers\dataController@lastData');
 
+// ************************************************
+
+Route::get('alarms', 'App\Http\Controllers\alarmController@getAlarms');
+Route::post('checkAlarm', 'App\Http\Controllers\alarmController@checkAlarm');
+Route::post('setAlarm', 'App\Http\Controllers\alarmController@setAlarm');
+
 Route::post('login', 'App\Http\Controllers\userController@login');
