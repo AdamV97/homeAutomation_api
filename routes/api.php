@@ -33,4 +33,8 @@ Route::get('alarms', 'App\Http\Controllers\alarmController@getAlarms');
 Route::post('checkAlarm', 'App\Http\Controllers\alarmController@checkAlarm');
 Route::post('setAlarm', 'App\Http\Controllers\alarmController@setAlarm');
 
+// ************************************************
+
+Route::post('saveToken', 'App\Http\Controllers\installationTokenController@saveToken');
+
 Route::post('login', 'App\Http\Controllers\userController@login');

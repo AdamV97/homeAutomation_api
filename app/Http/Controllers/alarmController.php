@@ -23,7 +23,7 @@ class alarmController extends Controller
         if($active->active){
             return true;
         }
-        
+
         return false;
     }
 
@@ -41,4 +41,5 @@ class alarmController extends Controller
 
         return 'alarm_set';
     }
+
 }
