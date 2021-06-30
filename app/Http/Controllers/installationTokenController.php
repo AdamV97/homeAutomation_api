@@ -12,8 +12,12 @@ class installationTokenController extends Controller
             'token' => 'string|required'
         ]);
 
-        InstallationToken::create([
-            'token' => $data['token']
-        ]);
+        $tokenExists = InstallationToken::where('token', '=', $data['token'])->get();
+
+        if(count($tokenExists) === 0){
+            InstallationToken::create([
+                'token' => $data['token']
+            ]);
+        }
     }
 }
