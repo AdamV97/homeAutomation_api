@@ -36,15 +36,20 @@ class weatherDataController extends Controller
 
     private function checkDatabase(){
         $lastEntry = WeatherData::latest()->first();
-        $timeFromDatabase = Carbon::parse($lastEntry->created_at);
-        $timeToCompare = Carbon::now()->subMinutes(30);
 
-        $result = $timeFromDatabase->gt($timeToCompare);
-        if($result){
-            return $lastEntry;
+        if($lastEntry !== null){
+            $timeFromDatabase = Carbon::parse($lastEntry->created_at);
+            $timeToCompare = Carbon::now()->subMinutes(30);
+    
+            $result = $timeFromDatabase->gt($timeToCompare);
+            if($result){
+                return $lastEntry;
+            }
+
+            return $result;
         }
 
-        return $result;
+        return false;
     }
 
     private function writeToDatabase($data){
