@@ -37,6 +37,9 @@ Route::middleware('auth:api')->group(function () {
 
     Route::post('lightOn', 'App\Http\Controllers\publishMqtt@turnOnLight');
     Route::get('getLightStatus', 'App\Http\Controllers\publishMqtt@getLightStatus');
+
+    Route::get('getCustomSettings', 'App\Http\Controllers\customSettingsController@getSettings');
+    Route::post('setCustomSettings', 'App\Http\Controllers\customSettingsController@setSettings');
 });
 
 Route::post('saveToken', 'App\Http\Controllers\installationTokenController@saveToken');
