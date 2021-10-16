@@ -34,6 +34,9 @@ Route::middleware('auth:api')->group(function () {
     Route::get('avgDayData', 'App\Http\Controllers\dataController@avgDayData');
     Route::get('lastData', 'App\Http\Controllers\dataController@lastData');
     Route::get('localWeather', 'App\Http\Controllers\weatherDataController@checkForUpdate');
+
+    Route::post('lightOn', 'App\Http\Controllers\publishMqtt@turnOnLight');
+    Route::get('getLightStatus', 'App\Http\Controllers\publishMqtt@getLightStatus');
 });
 
 Route::post('saveToken', 'App\Http\Controllers\installationTokenController@saveToken');
